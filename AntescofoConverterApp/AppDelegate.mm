@@ -24,7 +24,7 @@ using namespace std;
 @implementation ImporterWindow
 
 - (void)awakeFromNib {
-    [self registerForDraggedTypes:[NSArray arrayWithObjects:NSColorPboardType, nil]];
+    [self registerForDraggedTypes:[NSArray arrayWithObjects:NSPasteboardTypeColor, nil]];
 }
 
 - (BOOL)performDragOperation:(id < NSDraggingInfo >)sender {
@@ -309,7 +309,7 @@ using namespace std;
     [openDialog setFloatingPanel:YES];
     [openDialog setAllowedFileTypes:fileTypes];
     NSInteger result = [openDialog runModal];
-    if( result == NSOKButton )
+    if( result == NSModalResponseOK )
     {
         NSString* tmp = [[[openDialog URLs] objectAtIndex:0] path];
         self.importer->setInputPath( [tmp UTF8String] );
@@ -335,7 +335,7 @@ using namespace std;
         [saveDialog setNameFieldStringValue:[NSString stringWithUTF8String:outputFileName.c_str()]];
         [saveDialog setCanCreateDirectories:TRUE];
         NSInteger result = [saveDialog runModal];
-        if( result == NSOKButton )
+        if( result == NSModalResponseOK )
         {
             NSString* tmp = [[saveDialog URL] path];
             output = [tmp UTF8String];

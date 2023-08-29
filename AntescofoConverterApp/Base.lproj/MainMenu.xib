@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -111,16 +110,16 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Antescofo Importer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="Antescofo Converter" customClass="ImporterWindow">
+        <window title="Antescofo Importer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="Antescofo Converter" customClass="ImporterWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="860" height="510"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1800" height="1125"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="860" height="510"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" id="0TL-7X-Zxc">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0TL-7X-Zxc">
                         <rect key="frame" x="764" y="14" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Import" bezelStyle="rounded" imagePosition="right" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="Vb6-p6-f2j">
@@ -134,7 +133,7 @@ DQ
                             <action selector="import:" target="Voe-Tx-rLC" id="u2g-wm-lea"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" tag="2" id="UeH-N6-mBT">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="UeH-N6-mBT">
                         <rect key="frame" x="675" y="14" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="7TP-1U-jou">
@@ -148,15 +147,15 @@ Gw
                             <action selector="terminate:" target="-2" id="Jh0-LN-ZPo"/>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Score Info" id="YSw-0W-GS5">
+                    <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Score Info" translatesAutoresizingMaskIntoConstraints="NO" id="YSw-0W-GS5">
                         <rect key="frame" x="537" y="333" width="306" height="157"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="bdF-ve-Hhr">
-                            <rect key="frame" x="1" y="1" width="304" height="141"/>
+                            <rect key="frame" x="4" y="5" width="298" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="46e-qW-Whh">
-                                    <rect key="frame" x="10" y="-17" width="285" height="148"/>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46e-qW-Whh">
+                                    <rect key="frame" x="10" y="-21" width="285" height="148"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" id="fYO-QD-I1y">
                                         <font key="font" metaFont="smallSystem"/>
@@ -167,15 +166,15 @@ Gw
                             </subviews>
                         </view>
                     </box>
-                    <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Import Options" id="EDr-eK-F7M">
+                    <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Import Options" translatesAutoresizingMaskIntoConstraints="NO" id="EDr-eK-F7M">
                         <rect key="frame" x="537" y="66" width="306" height="257"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="G5k-bt-nkf">
-                            <rect key="frame" x="1" y="1" width="304" height="241"/>
+                            <rect key="frame" x="4" y="5" width="298" height="237"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button identifier="cents" toolTip="If checked, &quot;6000&quot; will be output instead of &quot;C4&quot; " tag="10" id="dLm-Vc-Zez">
-                                    <rect key="frame" x="16" y="215" width="168" height="18"/>
+                                <button identifier="cents" toolTip="If checked, &quot;6000&quot; will be output instead of &quot;C4&quot; " fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLm-Vc-Zez">
+                                    <rect key="frame" x="16" y="211" width="168" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Write Pitches in MIDI Cents" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ebk-2h-kFh">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -185,8 +184,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="k8X-Xy-Mkk"/>
                                     </connections>
                                 </button>
-                                <button identifier="pitches" toolTip="If checked, pitches will be output as in the original score (otherwise, D# will be used instead of Eb for instance)" tag="11" id="Wex-Re-d6E">
-                                    <rect key="frame" x="16" y="185" width="137" height="18"/>
+                                <button identifier="pitches" toolTip="If checked, pitches will be output as in the original score (otherwise, D# will be used instead of Eb for instance)" fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="Wex-Re-d6E">
+                                    <rect key="frame" x="16" y="181" width="137" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Keep Original Pitches" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rPp-RS-nI9">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -196,8 +195,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="TQI-Qx-E4i"/>
                                     </connections>
                                 </button>
-                                <button identifier="quarter" tag="11" id="zgK-lK-3r1">
-                                    <rect key="frame" x="16" y="155" width="120" height="18"/>
+                                <button identifier="quarter" fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="zgK-lK-3r1">
+                                    <rect key="frame" x="16" y="151" width="120" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <string key="toolTip">If checked, tempos and note duration will always be relative to the quarter note, even for compound time signatures such as 6/8 etc.</string>
                                     <buttonCell key="cell" type="check" title="Quarter Note Time" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4V4-zb-U3J">
@@ -208,8 +207,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="9ac-MF-AQz"/>
                                     </connections>
                                 </button>
-                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." tag="11" id="DkU-zn-O0h">
-                                    <rect key="frame" x="16" y="125" width="153" height="18"/>
+                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="DkU-zn-O0h">
+                                    <rect key="frame" x="16" y="121" width="153" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Treat 3/8 as Compound" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xEA-2I-Qbq">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -219,8 +218,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="qGB-tj-LKT"/>
                                     </connections>
                                 </button>
-                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." tag="-1" id="V5v-L5-q9Y">
-                                    <rect key="frame" x="16" y="95" width="216" height="18"/>
+                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V5v-L5-q9Y">
+                                    <rect key="frame" x="16" y="91" width="216" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Improve the MusicXml file if possible" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Rrp-EC-Lqf">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -230,8 +229,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="kYa-xb-BVq"/>
                                     </connections>
                                 </button>
-                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." tag="-1" id="mbP-u6-NCX">
-                                    <rect key="frame" x="16" y="65" width="216" height="18"/>
+                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-u6-NCX">
+                                    <rect key="frame" x="16" y="61" width="216" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Chase cues" bezelStyle="regularSquare" imagePosition="left" inset="2" id="L9a-Jz-iVu">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -241,8 +240,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="B5m-43-m8B"/>
                                     </connections>
                                 </button>
-                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." tag="-1" id="d7z-Qj-PTg">
-                                    <rect key="frame" x="16" y="35" width="216" height="18"/>
+                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d7z-Qj-PTg">
+                                    <rect key="frame" x="16" y="31" width="216" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Smart grace notes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="kkv-eX-CUa">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -252,8 +251,8 @@ Gw
                                         <action selector="checkboxEvent:" target="Voe-Tx-rLC" id="ciu-Ff-kU8"/>
                                     </connections>
                                 </button>
-                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." misplaced="YES" tag="-1" id="hg6-KX-R7N">
-                                    <rect key="frame" x="18" y="5" width="216" height="18"/>
+                                <button identifier="compound" toolTip="If checked, 3/8 will be seen as one-beat compound time." fixedFrame="YES" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hg6-KX-R7N">
+                                    <rect key="frame" x="18" y="1" width="216" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Smart appoggiaturas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gB8-LV-eCP">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -266,7 +265,7 @@ Gw
                             </subviews>
                         </view>
                     </box>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="bsU-0d-AV3">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-0d-AV3">
                         <rect key="frame" x="18" y="30" width="339" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="• Check the tracks to be followed within the Antescofo score." allowsEditingTextAttributes="YES" id="Ru9-VV-MD9">
@@ -275,7 +274,7 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="2Wk-qh-zfH">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Wk-qh-zfH">
                         <rect key="frame" x="18" y="10" width="339" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="• Optionally check some other tracks to be played back." allowsEditingTextAttributes="YES" id="MqU-M0-MSO">
@@ -284,23 +283,22 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="dUV-WQ-1i7">
+                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="dUV-WQ-1i7">
                         <rect key="frame" x="20" y="70" width="509" height="420"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="H8Q-Yu-oKt">
-                            <rect key="frame" x="1" y="0.0" width="507" height="419"/>
+                            <rect key="frame" x="1" y="1" width="507" height="418"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="s7w-4W-yJ1" id="1zO-0t-Mpr">
-                                    <rect key="frame" x="0.0" y="0.0" width="507" height="402"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="507" height="401"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="name" editable="NO" width="378" minWidth="40" maxWidth="1000" id="MYy-IY-2sW">
+                                        <tableColumn identifier="name" editable="NO" width="349" minWidth="40" maxWidth="1000" id="MYy-IY-2sW">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Track name">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -313,7 +311,6 @@ Gw
                                         </tableColumn>
                                         <tableColumn identifier="follow" width="43" minWidth="40" maxWidth="1000" headerToolTip="Check the tracks you want to be followed inside the Antescofo score" id="fzY-SS-qyb">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Follow">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -324,7 +321,6 @@ Gw
                                         </tableColumn>
                                         <tableColumn identifier="playback" width="60" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Check the other tracks you want to be used as accompaniement (&quot;action group&quot;, MIDI only)" id="fnG-CM-CPp">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Playback">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -341,20 +337,20 @@ Gw
                                 </tableView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ClO-Qf-w5D">
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ClO-Qf-w5D">
                             <rect key="frame" x="1" y="119" width="223" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="a7d-0d-fiG">
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="a7d-0d-fiG">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <tableHeaderView key="headerView" autoresizesSubviews="NO" id="s7w-4W-yJ1">
+                        <tableHeaderView key="headerView" autoresizesSubviews="NO" wantsLayer="YES" id="s7w-4W-yJ1">
                             <rect key="frame" x="0.0" y="0.0" width="507" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="3Qh-Oh-BxH">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Qh-Oh-BxH">
                         <rect key="frame" x="373" y="10" width="301" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Antescofo Importer v 0.1.56" id="4t8-af-EKg">
