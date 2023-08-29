@@ -213,6 +213,7 @@ void ImportModel::setCredits( const string& credits )
     credits_ = credits;
 }
 
+/// Add note to an existing measure.
 float ImportModel::addNote( float measure, float start, float duration, Pitch& pitch )
 {
     EntryFeatures& features = pitch.features();
@@ -225,7 +226,7 @@ float ImportModel::addNote( float measure, float start, float duration, Pitch& p
     auto it = events_.begin();
     while ( true )
     {
-        if ( it == events_.end() )
+        if ( it == events_.end() ) /// If we're past the end, push this note onto the `events_` list
         {
             emplaceEvent( it, new Entry( measure, start, duration, pitch ) );
             break;
@@ -307,7 +308,7 @@ float ImportModel::addNote( float measure, float start, float duration, Pitch& p
                 break;
             }
             else if ( event->hasNotes() && m == measure
-                     && features&MidiNote
+                     && features & MidiNote
                      && d > 0
                      && duration > 0
                      && isEqual( start, s )

@@ -28,7 +28,7 @@ using namespace std;
 }
 
 - (BOOL)performDragOperation:(id < NSDraggingInfo >)sender {
-    NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+    NSArray *draggedFilenames = [[sender draggingPasteboard] propertyListForType: NSFilenamesPboardType];
     if ([[[draggedFilenames objectAtIndex:0] pathExtension] isEqual:@"xml"])
         return YES;
     else

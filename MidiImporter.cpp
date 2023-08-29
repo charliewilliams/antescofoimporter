@@ -58,6 +58,9 @@ MidiImporter::~MidiImporter()
     //NOTHING
 }
 
+/*
+ Main function to import a MIDI file.
+ */
 bool MidiImporter::import()
 {
     clear();
@@ -68,12 +71,15 @@ bool MidiImporter::import()
     if ( !processHeader( rawContent ) )
         return false;
     int processedCount = 0;
-    bool trackSelection = ( tracks_.size() > 0 );
+    
+    /// Defensive tracking of `tracks_.size()` vs `tracksCount_`
+    /// Which I guess could be different values in the case of a malformed file?
+    bool midiFileContainsTracks = ( tracks_.size() > 0 );
     for ( int t = 1; t <= tracksCount_; ++t )
     {
-        if ( trackSelection && processedCount == tracks_.size() )
+        if ( midiFileContainsTracks && processedCount == tracks_.size() )
             break;
-        if ( !trackSelection || ( tracks_.size() && find( tracks_.begin(), tracks_.end(), t ) != tracks_.end() ) )
+        if ( !midiFileContainsTracks || ( tracks_.size() && find( tracks_.begin(), tracks_.end(), t ) != tracks_.end() ) )
         {
             cout << endl << "    processing track " << t << "...";
             if ( !processTrack( rawContent ) )
@@ -343,18 +349,25 @@ bool MidiImporter::processHeader( ifstream& stream )
 
 bool MidiImporter::processTrack( ifstream& stream )
 {
+    /// Check that this is a valid MIDI track
     unsigned int fourBytes = 0;
     if (  readFourbyte( stream, fourBytes ) && fourBytes == MIDI_TRACK )
     {
+        /// Checking the track… size? Unclear.
         unsigned int size = 0;
         if ( readFourbyte( stream, size ) )
         {
+            /// Reset everything to read this track
             clearForTrack();
+            
+            /// Keep looping until we hit the end of the track, or error
             while ( true )
             {
+                /// Read the time delta of this event
                 unsigned long delta = 0;
                 if ( readVariableLengthQuantity( stream, delta ) == 0 )
                     return false;
+                /// Read the value in the event
                 unsigned char value = 0;
                 if ( !readOnebyte( stream, value ) )
                     return false;
@@ -421,6 +434,7 @@ bool MidiImporter::processTrack( ifstream& stream )
                 }
                 runningStatus_ = status;
                 
+                /// Standard MIDI note on/off events ♫
                 if ( status == MIDI_NOTE_ON || status == MIDI_NOTE_OFF )
                 {
                     unsigned char velocity = 0;
@@ -548,6 +562,13 @@ bool MidiImporter::processTrackForActionGroup( ifstream& stream, int trackIndex 
     return success;
 }
 
+/*
+ Track each note as it starts and stops.
+ Note that we need to wait for a note to *stop* before we can
+ write it into the Antescofo score, because unlike MIDI with
+ its instantaneous start/stop events, we instead say (basically)
+ when the note starts and how long it is— more like trad notation.
+ */
 long MidiImporter::handleNote( long delta, short noteIndex, bool isOn )
 {
     long unquantified = delta;
@@ -557,7 +578,7 @@ long MidiImporter::handleNote( long delta, short noteIndex, bool isOn )
     //    cout << "  note=" << noteIndex << " at delta time=" << accumGlobal_ << " on/off=" << (int)isOn << endl;
     if ( isOn )      //NOTEON
     {
-        if ( midiNotes_[noteIndex] == -1 )
+        if ( midiNotes_[noteIndex] == -1 ) // This note isn't already being played
         {
             long forwardPoint = accumGlobal_ + delta;
             long silence = forwardPoint - lastNoteOff_;
@@ -565,7 +586,7 @@ long MidiImporter::handleNote( long delta, short noteIndex, bool isOn )
             long measureStart = currentMeasureStart_;
             long measureLength = 0;
             Pitch rest ( 0, MidiNote);
-            while ( silence > 0 && onCount_ == 0 )
+            while ( silence > 0 && onCount_ == 0 ) /// Is this new note happening after some silence? We need to notate that first!
             {
                 const Event* specs = model_.findMeasure( measure );
                 if ( specs )
@@ -603,14 +624,16 @@ long MidiImporter::handleNote( long delta, short noteIndex, bool isOn )
     }
     else if ( !isOn )    //NOTEOFF
     {
-        if ( midiNotes_[noteIndex] != -1 )
+        if ( midiNotes_[noteIndex] != -1 ) // This note IS already being played, i.e. we can release it
         {
             float noteOn = midiNotes_[noteIndex];
             long duration = accumGlobal_ + unquantified - noteOn;
             duration = quantify( duration );
             int measure = currentMeasure_;
             long measureStart = currentMeasureStart_;
-            Pitch note ( 0, MidiNote );
+            Pitch note ( 0, MidiNote ); /// We make our note object to store
+            // Working backwards (because we are currently at "note off" time)
+            // We write this note from its end to its beginning
             while ( duration > 0 )
             {
                 long start = noteOn;
@@ -647,8 +670,8 @@ long MidiImporter::handleNote( long delta, short noteIndex, bool isOn )
                 }
                 else break;
             }
-            setMidiNote( noteIndex, -1 );
-            lastNoteOff_ = accumGlobal_ + unquantified;
+            setMidiNote( noteIndex, -1 ); // Mark this note as no longer in progress
+            lastNoteOff_ = accumGlobal_ + unquantified; // Store the time of our last note-off event
         }
     }
     return unquantified;
@@ -737,16 +760,18 @@ void MidiImporter::handleTimeSignature( long delta, short upper, short lower )
 
 void MidiImporter::stampMeasure( long delta )
 {
+    /// Use the delta to find our new global time
     long time = accumGlobal_ + delta;
     if ( currentMeasureDuration_ > 0 )
     {
         while ( currentMeasure_ == 0 || ( time - currentMeasureStart_ ) >= currentMeasureDuration_ )
         {
+            /// Figure out what measure we're in
             if ( currentMeasure_ > 0 )
                 currentMeasureStart_ += currentMeasureDuration_;
             ++currentMeasure_;
             const Event* measure =  model_.findMeasure( currentMeasure_ );
-            if ( measure == nullptr )
+            if ( measure == nullptr ) /// First event in measure
             {
                 long measureDuration = currentMeasureDuration_;
                 string timeSignature = currentTimeSignature_;
@@ -761,7 +786,7 @@ void MidiImporter::stampMeasure( long delta )
                                                               1.0,
                                                               timeSignature ) );
             }
-            else
+            else /// We have a measure already
             {
                 newMeasureDuration_ = currentMeasureDuration_ = measure->duration()*quarterNoteDivision_;
                 currentTimeSignature_ = ((Measure*) measure)->timeSignature();
